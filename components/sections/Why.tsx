@@ -25,7 +25,7 @@ export default function Why() {
             symptom like &ldquo;returns no rows, but rows exist.&rdquo; Before
             submitting a fix, the agent can describe tables, run read-only
             diagnostic SELECTs, and burn up to two oracle checks against a
-            hidden expected output. Every action emits a reward.
+            hidden expected output. Every step returns a fresh observation.
           </p>
           <p>
             A five-dimension grader scores each submission independently: did

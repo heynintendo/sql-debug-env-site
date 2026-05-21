@@ -15,9 +15,9 @@ const stats: Array<{ value: string; label: string; sub: string }> = [
     sub: "employees, orders, library, students, sales, ecommerce, hospital, projects",
   },
   {
-    value: "0.774",
-    label: "baseline score",
-    sub: "average heuristic across all 33 tasks",
+    value: "2",
+    label: "oracle checks per episode",
+    sub: "hidden expected output, used sparingly",
   },
 ];
 
