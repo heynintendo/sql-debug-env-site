@@ -10,7 +10,7 @@ export default function Header() {
           href="/"
           className="flex items-center gap-2 font-mono text-sm font-semibold tracking-tight"
         >
-          <span className="text-accent">$</span>
+          <span className="text-accent">{"=>"}</span>
           <span className="text-foreground">sql-debug-env</span>
         </Link>
         <nav className="flex items-center gap-1 text-sm">
