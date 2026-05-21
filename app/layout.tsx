@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
@@ -14,10 +14,53 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://sql-debug-env-site.vercel.app";
+
+const TITLE = "sql-debug-env — RL environment for SQL debugging";
+const DESCRIPTION =
+  "An OpenEnv 1.0 reinforcement learning environment that trains agents to debug SQL. 33 tasks, a five-dimension partial-credit grader, live on Hugging Face Spaces.";
+
 export const metadata: Metadata = {
-  title: "sql-debug-env — RL environment for SQL debugging",
-  description:
-    "An OpenEnv-compatible reinforcement learning environment that trains agents to debug SQL. 33 tasks, a five-dimension partial-credit grader, live on Hugging Face.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: TITLE,
+    template: "%s · sql-debug-env",
+  },
+  description: DESCRIPTION,
+  applicationName: "sql-debug-env",
+  authors: [{ name: "Anish Kishore" }],
+  keywords: [
+    "reinforcement learning",
+    "OpenEnv",
+    "SQL",
+    "PyTorch",
+    "RL environment",
+    "code agents",
+    "partial credit grading",
+  ],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: SITE_URL,
+    siteName: "sql-debug-env",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0A0A0B",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({

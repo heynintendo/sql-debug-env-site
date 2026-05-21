@@ -1,6 +1,26 @@
 "use client";
 
-import { Editor, type OnMount } from "@monaco-editor/react";
+import dynamic from "next/dynamic";
+import type { OnMount } from "@monaco-editor/react";
+
+const Editor = dynamic(() => import("@monaco-editor/react"), {
+  ssr: false,
+  loading: () => <EditorSkeleton />,
+});
+
+function EditorSkeleton() {
+  return (
+    <div className="flex h-[250px] flex-col gap-3 bg-background px-4 py-5">
+      <div className="h-3 w-3/4 animate-pulse rounded bg-border" />
+      <div className="h-3 w-1/2 animate-pulse rounded bg-border" />
+      <div className="h-3 w-2/3 animate-pulse rounded bg-border" />
+      <div className="h-3 w-1/3 animate-pulse rounded bg-border" />
+      <p className="mt-auto font-mono text-[10px] uppercase tracking-[0.22em] text-muted">
+        loading editor…
+      </p>
+    </div>
+  );
+}
 
 export default function SqlEditor({
   value,
@@ -55,11 +75,6 @@ export default function SqlEditor({
         value={value}
         onChange={(v) => onChange(v ?? "")}
         onMount={handleMount}
-        loading={
-          <div className="flex h-[250px] items-center justify-center font-mono text-xs text-muted">
-            loading editor…
-          </div>
-        }
         options={{
           fontFamily:
             "var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace",

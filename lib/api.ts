@@ -75,6 +75,9 @@ export async function gradeQuery(
   taskId: string,
   query: string,
 ): Promise<EnvResponse> {
+  // The HF Space holds a single global episode, so two simultaneous submissions
+  // could interleave. A race window exists but is negligible at single-user
+  // showcase traffic; pairing reset+step keeps each fix grounded in its own setup.
   await resetEpisode(taskId);
   return submitFix(query);
 }

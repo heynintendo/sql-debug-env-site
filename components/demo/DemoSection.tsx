@@ -8,6 +8,7 @@ import TaskSelector from "./TaskSelector";
 import TaskCard from "./TaskCard";
 import SqlEditor from "./SqlEditor";
 import ResultPanel from "./ResultPanel";
+import MobileFallback from "./MobileFallback";
 
 export default function DemoSection() {
   const [selectedId, setSelectedId] = useState(DEMO_TASKS[0].id);
@@ -18,11 +19,21 @@ export default function DemoSection() {
   const [warming, setWarming] = useState(false);
   const [response, setResponse] = useState<EnvResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [narrow, setNarrow] = useState(false);
 
   const lastTaskRef = useRef(selectedId);
 
   useEffect(() => {
     warmUp();
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(max-width: 639px)");
+    setNarrow(mq.matches);
+    const handle = (e: MediaQueryListEvent) => setNarrow(e.matches);
+    mq.addEventListener("change", handle);
+    return () => mq.removeEventListener("change", handle);
   }, []);
 
   useEffect(() => {
@@ -88,38 +99,44 @@ export default function DemoSection() {
 
           <TaskCard task={selected} />
 
-          <SqlEditor value={query} onChange={setQuery} disabled={loading} />
+          {narrow ? (
+            <MobileFallback task={selected} />
+          ) : (
+            <>
+              <SqlEditor value={query} onChange={setQuery} disabled={loading} />
 
-          <div className="flex flex-wrap items-center gap-3">
-            <button
-              type="button"
-              onClick={handleSubmit}
-              disabled={loading}
-              className="group inline-flex items-center gap-2 rounded-md bg-accent px-5 py-2.5 text-sm font-semibold text-background transition hover:brightness-110 disabled:cursor-not-allowed disabled:bg-accent/60 disabled:hover:brightness-100"
-            >
-              {submitLabel}
-              {!loading && (
-                <ArrowRight
-                  className="h-4 w-4 transition group-hover:translate-x-0.5"
-                  aria-hidden
-                />
-              )}
-            </button>
-            <button
-              type="button"
-              onClick={handleReset}
-              disabled={loading}
-              className="inline-flex items-center gap-2 rounded-md border border-border bg-transparent px-5 py-2.5 text-sm font-medium text-foreground transition hover:bg-surface disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              Reset to buggy
-            </button>
-            <span className="font-mono text-[11px] text-muted">
-              POST <span className="text-foreground">/reset</span> &rarr;{" "}
-              <span className="text-foreground">/step</span>
-            </span>
-          </div>
+              <div className="flex flex-wrap items-center gap-3">
+                <button
+                  type="button"
+                  onClick={handleSubmit}
+                  disabled={loading}
+                  className="group inline-flex items-center gap-2 rounded-md bg-accent px-5 py-2.5 text-sm font-semibold text-background transition hover:brightness-110 disabled:cursor-not-allowed disabled:bg-accent/60 disabled:hover:brightness-100"
+                >
+                  {submitLabel}
+                  {!loading && (
+                    <ArrowRight
+                      className="h-4 w-4 transition group-hover:translate-x-0.5"
+                      aria-hidden
+                    />
+                  )}
+                </button>
+                <button
+                  type="button"
+                  onClick={handleReset}
+                  disabled={loading}
+                  className="inline-flex items-center gap-2 rounded-md border border-border bg-transparent px-5 py-2.5 text-sm font-medium text-foreground transition hover:bg-surface disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  Reset to buggy
+                </button>
+                <span className="font-mono text-[11px] text-muted">
+                  POST <span className="text-foreground">/reset</span> &rarr;{" "}
+                  <span className="text-foreground">/step</span>
+                </span>
+              </div>
 
-          <ResultPanel response={response} error={error} />
+              <ResultPanel response={response} error={error} />
+            </>
+          )}
         </div>
       </div>
     </section>

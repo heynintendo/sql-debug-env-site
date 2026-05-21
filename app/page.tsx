@@ -4,16 +4,27 @@ import Numbers from "@/components/sections/Numbers";
 import Architecture from "@/components/sections/Architecture";
 import Credit from "@/components/sections/Credit";
 import DemoSection from "@/components/demo/DemoSection";
+import Reveal from "@/components/Reveal";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <Why />
-      <Numbers />
-      <Architecture />
-      <DemoSection />
-      <Credit />
+      <Reveal>
+        <Why />
+      </Reveal>
+      <Reveal>
+        <Numbers />
+      </Reveal>
+      <Reveal>
+        <Architecture />
+      </Reveal>
+      <Reveal>
+        <DemoSection />
+      </Reveal>
+      <Reveal>
+        <Credit />
+      </Reveal>
     </>
   );
 }

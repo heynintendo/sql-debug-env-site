@@ -75,21 +75,19 @@ function HeroDemoCard() {
 
         <div className="space-y-5 p-5 font-mono text-[13px] leading-relaxed sm:text-sm">
           <div>
-            <p className="text-muted">-- buggy</p>
-            <p className="mt-1">
+            <p className="hero-line text-muted">-- buggy</p>
+            <p className="hero-line mt-1" style={{ animationDelay: "0s" }}>
               <span className="text-muted">SELECT</span>{" "}
               <span className="text-foreground">full_name</span>{" "}
               <span className="text-muted">FROM</span>{" "}
               <span className="text-foreground">employees</span>
             </p>
-            <p>
+            <p className="hero-line" style={{ animationDelay: "0.2s" }}>
               <span className="text-muted">WHERE</span>{" "}
               <span className="text-foreground">manager_id</span>{" "}
-              <span className="text-error line-through decoration-error/70">
-                = NULL
-              </span>
+              <span className="hero-strike text-error">= NULL</span>
             </p>
-            <p>
+            <p className="hero-line" style={{ animationDelay: "0.4s" }}>
               <span className="text-muted">ORDER&nbsp;BY</span>{" "}
               <span className="text-foreground">emp_id</span>;
             </p>
@@ -102,32 +100,40 @@ function HeroDemoCard() {
           </div>
 
           <div>
-            <p className="text-muted">-- fix</p>
-            <p className="mt-1">
+            <p
+              className="hero-line text-muted"
+              style={{ animationDelay: "1.3s" }}
+            >
+              -- fix
+            </p>
+            <p
+              className="hero-line mt-1"
+              style={{ animationDelay: "1.3s" }}
+            >
               <span className="text-muted">SELECT</span>{" "}
               <span className="text-foreground">full_name</span>{" "}
               <span className="text-muted">FROM</span>{" "}
               <span className="text-foreground">employees</span>
             </p>
-            <p>
+            <p className="hero-line" style={{ animationDelay: "1.5s" }}>
               <span className="text-muted">WHERE</span>{" "}
               <span className="text-foreground">manager_id</span>{" "}
               <span className="rounded bg-accent-soft px-1 text-accent">
                 IS NULL
               </span>
             </p>
-            <p>
+            <p className="hero-line" style={{ animationDelay: "1.7s" }}>
               <span className="text-muted">ORDER&nbsp;BY</span>{" "}
               <span className="text-foreground">emp_id</span>;
             </p>
           </div>
 
           <div className="flex items-center justify-between border-t border-border pt-4">
-            <span className="inline-flex items-center gap-1.5 rounded-md border border-success/30 bg-success/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-success">
+            <span className="hero-badge inline-flex items-center gap-1.5 rounded-md border border-success/30 bg-success/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-success">
               <span className="h-1.5 w-1.5 rounded-full bg-success" />
               passed
             </span>
-            <span className="text-[11px] text-muted">
+            <span className="hero-badge text-[11px] text-muted">
               reward <span className="text-success">0.98</span>
             </span>
           </div>
