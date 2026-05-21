@@ -17,7 +17,7 @@ export default async function OpengraphImage() {
           justifyContent: "space-between",
           alignItems: "flex-start",
           background:
-            "radial-gradient(circle at 80% 10%, rgba(245,165,36,0.18), transparent 50%), #0A0A0B",
+            "radial-gradient(circle at 82% 12%, rgba(245,165,36,0.18), transparent 55%), #0A0A0B",
           color: "#F5F5F4",
           padding: "72px 80px",
           fontFamily:
@@ -45,10 +45,9 @@ export default async function OpengraphImage() {
             display: "flex",
             flexDirection: "column",
             gap: 28,
-            maxWidth: 980,
           }}
         >
-          <p
+          <div
             style={{
               fontFamily:
                 "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
@@ -56,24 +55,26 @@ export default async function OpengraphImage() {
               letterSpacing: "0.22em",
               textTransform: "uppercase",
               color: "#A1A1AA",
-              margin: 0,
             }}
           >
             Meta PyTorch × Scaler · OpenEnv Hackathon
-          </p>
-          <h1
+          </div>
+          <div
             style={{
-              fontSize: 84,
-              lineHeight: 1.04,
-              letterSpacing: "-0.025em",
+              display: "flex",
+              flexDirection: "column",
+              fontSize: 76,
+              lineHeight: 1.08,
+              letterSpacing: "-0.02em",
               fontWeight: 500,
-              margin: 0,
               color: "#F5F5F4",
+              maxWidth: 1040,
             }}
           >
-            An RL environment for training agents to{" "}
-            <span style={{ color: "#F5A524" }}>debug SQL</span>.
-          </h1>
+            <div>An RL environment for</div>
+            <div>training agents to</div>
+            <div style={{ color: "#F5A524" }}>debug SQL.</div>
+          </div>
         </div>
 
         <div

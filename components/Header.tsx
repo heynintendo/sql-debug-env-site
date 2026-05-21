@@ -24,6 +24,7 @@ export default function Header() {
             href="https://github.com/heynintendo/sql-debug-env"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="GitHub repository"
             className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-muted transition hover:text-foreground"
           >
             <GithubIcon className="h-4 w-4" />
