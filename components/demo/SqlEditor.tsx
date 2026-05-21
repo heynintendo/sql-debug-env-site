@@ -90,7 +90,11 @@ export default function SqlEditor({
           folding: false,
           overviewRulerBorder: false,
           overviewRulerLanes: 0,
-          scrollbar: { verticalScrollbarSize: 8, horizontalScrollbarSize: 8 },
+          scrollbar: {
+            verticalScrollbarSize: 8,
+            horizontalScrollbarSize: 8,
+            alwaysConsumeMouseWheel: false,
+          },
         }}
       />
     </div>
